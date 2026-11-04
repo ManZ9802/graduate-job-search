@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A focused Singapore graduate job search workspace." />
+    <title>Graduate Job Search | Singapore</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="topbar" aria-label="Primary">
+        <a class="wordmark" href="/" aria-label="Graduate Job Search home"><span>MZ</span> Career search</a>
+        <div class="topbar-links">
+          <a href="#opportunities">Live roles</a>
+          <a href="#shortlist">Shortlist</a>
+          <a class="resume-link" href="https://personal-portfolio-one-alpha-51.vercel.app/resume/Man_Zhong_Wong_Complete_Resume_2026.pdf" target="_blank" rel="noreferrer">Open résumé</a>
+        </div>
+      </nav>
+
+      <header class="masthead">
+        <div class="hero-copy">
+          <p class="kicker">Singapore graduate search</p>
+          <h1>Find the right start, not just the next opening.</h1>
+          <p class="intro">A private workspace for May 2027 roles in AI, software, data and technical business. Source, assess, then apply through the employer.</p>
+          <div class="preference-row" aria-label="Current search preferences">
+            <span>Singapore</span><span>May 2027 intake</span><span>Entry level</span>
+          </div>
+        </div>
+        <aside class="signal-card" aria-labelledby="signal-title">
+          <div class="signal-head"><span class="live-indicator" aria-hidden="true"></span><p>Live market signal</p></div>
+          <strong id="hero-total">Loading</strong>
+          <h2 id="signal-title">Singapore graduate roles</h2>
+          <p>Live catalogue from FreeHire. Jorb is linked below for graduate-programme alerts.</p>
+          <a href="#opportunities">Review opportunities</a>
+        </aside>
+      </header>
+
+      <section class="control-panel" aria-labelledby="search-heading">
+        <div class="control-heading">
+          <div>
+            <p class="kicker">Search desk</p>
+            <h2 id="search-heading">Narrow the field.</h2>
+          </div>
+          <p id="status" aria-live="polite">Loading Singapore graduate roles.</p>
+        </div>
+        <div class="controls">
+          <label class="search-box" for="query">Search titles and keywords</label>
+          <div class="search-row">
+            <input id="query" type="search" placeholder="e.g. AI engineer, software, analyst" autocomplete="off" />
+            <button id="search-button" class="primary" type="button">Search roles</button>
+          </div>
+          <div class="track-bar" role="group" aria-label="Graduate role tracks">
+            <button class="track active" data-track="all" type="button">All graduate roles</button>
+            <button class="track" data-track="software" type="button">Software</button>
+            <button class="track" data-track="ai" type="button">AI and data</button>
+            <button class="track" data-track="quant" type="button">Quant and finance</button>
+            <button class="track" data-track="product" type="button">Product and ops</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Job results and application tracker">
+        <div class="results-area" id="opportunities">
+          <div class="results-title">
+            <div><p class="kicker">Selected from live data</p><h2>Opportunities</h2></div>
+            <span id="result-count" class="count"></span>
+          </div>
+          <div id="error" class="error hidden" role="alert"></div>
+          <div id="loading" class="loading-grid" aria-label="Loading results">
+            <div></div><div></div><div></div><div></div>
+          </div>
+          <div id="jobs" class="job-list"></div>
+          <div id="empty" class="empty hidden">No matching roles in this filter. Try a broader search or another track.</div>
+        </div>
+
+        <aside class="tracker" id="shortlist" aria-labelledby="tracker-title">
+          <div class="tracker-head">
+            <div>
+              <p class="kicker">Private tracker</p>
+              <h2 id="tracker-title">Your shortlist</h2>
+            </div>
+            <button id="clear-tracker" class="text-button" type="button">Clear</button>
+          </div>
+          <p class="tracker-copy">Saved and applied statuses stay in this browser. Nothing is submitted from here.</p>
+          <div id="tracker-list" class="tracker-list"></div>
+          <div class="tracker-rule"><strong>Before applying</strong><span>Check eligibility, closing date and required work authorisation on the original employer page.</span></div>
+        </aside>
+      </section>
+
+      <section class="sources" aria-labelledby="sources-heading">
+        <div>
+          <p class="kicker">Programme signal</p>
+          <h2 id="sources-heading">Use Jorb to spot the hiring cycle.</h2>
+          <p>Jorb tracks Singapore graduate programmes at major firms. Use it to see new cohorts early, then verify each role against the employer's own careers page.</p>
+        </div>
+        <div class="source-links">
+          <a href="https://www.jorb.ai/graduate-jobs/software-engineering/singapore" target="_blank" rel="noreferrer"><span>Software engineering</span><small>Jorb Singapore</small></a>
+          <a href="https://www.jorb.ai/graduate-jobs/data-and-ai/singapore" target="_blank" rel="noreferrer"><span>Data and AI</span><small>Jorb Singapore</small></a>
+          <a href="https://www.jorb.ai/graduate-jobs/generalist-programmes/singapore" target="_blank" rel="noreferrer"><span>Generalist programmes</span><small>Jorb Singapore</small></a>
+        </div>
+      </section>
+
+      <footer>
+        <span>Live role data: <a href="https://freehire.me" target="_blank" rel="noreferrer">FreeHire</a>.</span>
+        <span>Discovery only. Employer sources decide eligibility and deadlines.</span>
+      </footer>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
