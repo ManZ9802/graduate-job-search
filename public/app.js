@@ -14,9 +14,31 @@ const clearButton = document.querySelector("#clear-tracker");
 let activeTrack = "all";
 let latestJobs = [];
 const storageKey = "graduate-job-search-tracker-v1";
+const uolSeedKey = "graduate-job-search-uol-digital-technology-intern-v1";
+const uolIntern = {
+  id: "uol-group-digital-technology-intern-jan-jun-2027",
+  title: "Digital & Technology Intern (Jan–Jun 2027)",
+  company: "UOL Group",
+  location: "Singapore",
+  category: "Internship",
+  seniority: "Internship",
+  source: "NUS School of Computing Internships email",
+  postedAt: "2026-11-18T10:00:00+00:00",
+  skills: ["AI", "Data & analytics", "Microsoft Fabric", "Power BI", "Azure", "Cybersecurity"],
+  url: "mailto:hr@uol.com.sg",
+  status: "interested",
+  savedAt: "2026-11-18T10:00:00+00:00"
+};
 
 function getTracker() {
-  try { return JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch { return {}; }
+  let tracker;
+  try { tracker = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch { tracker = {}; }
+  if (!localStorage.getItem(uolSeedKey)) {
+    tracker[uolIntern.id] = uolIntern;
+    localStorage.setItem(storageKey, JSON.stringify(tracker));
+    localStorage.setItem(uolSeedKey, "true");
+  }
+  return tracker;
 }
 function saveTracker(value) { localStorage.setItem(storageKey, JSON.stringify(value)); }
 function escapeHtml(value) { return String(value || "").replace(/[&<>'\"]/g, (character) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;" })[character]); }
@@ -26,7 +48,11 @@ function dateLabel(value) {
   if (Number.isNaN(date.getTime())) return "Posting date unavailable";
   return `Posted ${date.toLocaleDateString(undefined, { month: "short", day: "numeric" })}`;
 }
-function statusLabel(item) { return item.status === "applied" ? "Applied" : "Saved"; }
+function statusLabel(item) {
+  if (item.status === "applied") return "Applied";
+  if (item.status === "interested") return "Interested";
+  return "Saved";
+}
 function rolesLabel(total) { return Number(total || 0).toLocaleString(); }
 
 function renderTracker() {
@@ -139,7 +165,13 @@ trackerEl.addEventListener("click", (event) => {
   const id = button.dataset.id;
   if (!tracker[id]) return;
   if (button.dataset.action === "remove") delete tracker[id];
-  if (button.dataset.action === "toggle") tracker[id].status = tracker[id].status === "applied" ? "saved" : "applied";
+  if (button.dataset.action === "toggle") {
+    if (tracker[id].status === "applied") tracker[id].status = tracker[id].statusBeforeApplied || "saved";
+    else {
+      tracker[id].statusBeforeApplied = tracker[id].status;
+      tracker[id].status = "applied";
+    }
+  }
   saveTracker(tracker);
   renderTracker();
   renderJobs(latestJobs);
